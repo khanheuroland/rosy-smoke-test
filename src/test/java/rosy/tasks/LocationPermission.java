@@ -5,6 +5,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
+import net.thucydides.core.annotations.Step;
 import rosy.ui.HomeScreen;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
@@ -17,6 +18,7 @@ public class LocationPermission implements Task {
         this.isAllow=isAllow;
     }
     @Override
+    @Step("{0} allow the Location permission access")
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Check.whether(isAllow).andIfSo(

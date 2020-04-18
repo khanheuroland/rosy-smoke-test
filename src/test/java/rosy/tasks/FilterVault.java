@@ -4,6 +4,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import rosy.actions.SelectFilterSources;
 import rosy.actions.SelectFilterTypes;
 import rosy.ui.VaultScreen;
@@ -11,6 +12,7 @@ import rosy.ui.VaultScreen;
 import java.util.function.BiFunction;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class FilterVault implements Task {
     String types;
@@ -29,6 +31,7 @@ public class FilterVault implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
+                WaitUntil.the(VaultScreen.FILTER_BUTTON, isVisible()).forNoMoreThan(15).seconds(),
                 Click.on(VaultScreen.FILTER_BUTTON),
                 Check.whether(!this.types.isEmpty()).andIfSo(
                         SelectFilterTypes.with(this.types)

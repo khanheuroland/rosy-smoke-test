@@ -9,8 +9,14 @@ public class HomeScreen {
             .located(By.xpath("(//*[@content-desc=\"rosy_icon\"])[2]/following-sibling::android.view.ViewGroup"));
     public static final Target HIDE_NAVIGATION = Target.the("Show navigation button")
             .located(By.xpath("(//android.view.ViewGroup[@content-desc=\"rosy_icon\"]/following-sibling::android.view.ViewGroup)[3]"));
+
+    public static final Target LARGE_NAVIGATION = Target.the("The Navigation bar")
+            .located(By.xpath("//*[@content-desc=\"home_icon\"]/.."));
+
     public static final Target LOGOUT_BUTTON = Target.the("Logout button")
             .located(By.xpath("//*[@text=\"Log out\"]/.."));
+    public static final Target ITEM_LIST = Target.the("Item list")
+            .located(By.xpath("//android.widget.HorizontalScrollView"));
 
     public static Target LOCATION_PERMISSION = Target.the("Location request permission")
             .located(By.id("com.android.packageinstaller:id/dialog_container"));

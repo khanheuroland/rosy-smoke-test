@@ -8,7 +8,9 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.interactions.touch.TouchActions;
 
 import java.time.Duration;
 import java.util.Set;
@@ -48,20 +50,25 @@ public class AppiumObject extends ProxiedDriver<AndroidDriver<MobileElement>> {
 
     }
 
-    public void swipeUp(Actor actor) {
-        Dimension size = getDriver(actor).manage().window().getSize();
+    public void swipeUp(Target element, Actor actor) {
+        //Dimension size = getDriver(actor).manage().window().getSize();
+        Dimension size = element.resolveFor(actor).getSize();
 
         int startY = (int) (size.getHeight() * 0.50);
         int endY = (int) (size.getHeight() * 0.20);
         int startX = size.getWidth() / 2;
 
+        TouchActions action = new TouchActions(getDriver(actor));
+        action.scroll(element.resolveFor(actor), startX, endY);
+        action.perform();
+
+        /*
         withAction(actor)
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)))
                 .longPress(PointOption.point(startX, endY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2)))
                 .moveTo(PointOption.point(startX, startY))
-                .release().perform();
-
+                .release().perform();*/
     }
 
     public void swipeLeft(Actor actor) {

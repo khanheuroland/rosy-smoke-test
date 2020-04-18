@@ -2,13 +2,10 @@ package rosy.tasks;
 
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
-import rosy.actions.ChoosePicture;
-import rosy.ui.AddVaultScreen;
 import rosy.ui.VaultScreen;
-import rosy.ui.ViewVaultScreen;
+import rosy.ui.VaultDetailScreen;
 
 import java.util.List;
 import java.util.Random;
@@ -32,7 +29,7 @@ public class ViewVault implements Task {
         }
         actor.attemptsTo(
                 Click.on(lstVaults.get(this.index)),
-                Click.on(ViewVaultScreen.BACK_TO_VAULT)
+                Click.on(VaultDetailScreen.BACK_TO_VAULT)
         );
     }
 
